@@ -2,45 +2,56 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kenyér Kalkulátor</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      height: 100vh;
       background: #edae6f;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 20px;
+      min-height: 100vh;
+      margin: 0;
     }
-    display {
-     width: 100%;
-     height: 60px;
-     font-size: 2em;
-     font-weight: bold;
-     text-align: center;
-     padding: 10px;
-     border-radius: 5px;
-     border: 1px solid #ccc;
-     box-sizing: border-box;
+
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
     }
-    .calculator { 
-      background: #fff; 
-      padding: 20px; 
-      border-radius: 10px; 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
-      width: 100%;        /* Mobilon is széles legyen */
-      max-width: 400px;  /* Nagyobb képernyőn ne legyen túl széles */
-    }
+
     h1 {
       color: #5a3e2b;
     }
+
     select, input, button {
-      padding: 10px;
-      margin: 10px;
-      font-size: 16px;
+      width: 100%;
+      font-size: 1.2em;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
     }
+
+    button.calculate {
+      background-color: #27ae60;
+      color: white;
+      border: none;
+    }
+
+    button.reset {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+    }
+
     .result {
       margin-top: 20px;
       padding: 15px;
@@ -48,19 +59,21 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: left;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
     }
+
     .timer {
-      font-size: 2em;
-      margin-top: 20px;
+      font-size: 1.5em;
+      margin-top: 15px;
       color: #2b5a3e;
+      text-align: center;
     }
   </style>
 </head>
 <body>
+
+<div class="calculator">
   <h1>🥖 Kenyér Kalkulátor</h1>
+
   <label for="type">Kenyér típusa:</label>
   <select id="type">
     <option value="alap">Alap kenyér</option>
@@ -68,61 +81,19 @@
     <option value="bagett">Bagett / Zsemle</option>
     <option value="kalacs">Édes kalács</option>
   </select>
-  <br>
+
   <label for="flour">Liszt mennyisége (g):</label>
   <input type="number" id="flour" value="400">
-  <br>
-  <button onclick="calculate()">Számolás</button>
+
+  <button class="calculate" onclick="calculate()">Számolás</button>
   <button class="reset" onclick="resetCalculator()">Reset</button>
-  
+
   <div class="result" id="result"></div>
   <div class="timer" id="timer"></div>
-  
-  <script>
-    const recipes = {
-      alap: { water: 0.7, starter: 0.35, salt: 0.02, proof: 180, bake: "230°C 40 perc" },
-      magvas: { water: 0.75, starter: 0.35, salt: 0.02, proof: 210, bake: "220°C 45 perc" },
-      bagett: { water: 0.68, starter: 0.3, salt: 0.02, proof: 120, bake: "240°C 20-25 perc" },
-      kalacs: { water: 0.55, starter: 0.25, salt: 0.015, proof: 150, bake: "180°C 30-35 perc + tojáskenés" }
-    };
+</div>
 
-    let timerInterval;
-
-    function calculate() {
-      clearInterval(timerInterval);
-      const type = document.getElementById("type").value;
-      const flour = parseInt(document.getElementById("flour").value);
-      const recipe = recipes[type];
-
-      const water = Math.round(flour * recipe.water);
-      const starter = Math.round(flour * recipe.starter);
-      const salt = Math.round(flour * recipe.salt);
-
-      document.getElementById("result").innerHTML = `
-        <h2>📋 Recept adatok</h2>
-        <p><b>Liszt:</b> ${flour} g</p>
-        <p><b>Víz:</b> ${water} g</p>
-        <p><b>Kovász:</b> ${starter} g</p>
-        <p><b>Só:</b> ${salt} g</p>
-        <h3>⚙️ Technológiai adatok</h3>
-        <p><b>Kelesztési idő:</b> ${recipe.proof} perc</p>
-        <p><b>Sütés:</b> ${recipe.bake}</p>
-      `;
-
-      startTimer(recipe.proof * 60);
-    }
-     function resetCalculator() {
-    value1.value = '';
-    value2.value = '';
-    display.value = '';
-    operation.value = '';
-  }
-  </script>
-</body>
-</html>
-
-
-
-
-
-
+<script>
+  const recipes = {
+    alap: { water: 0.7, starter: 0.35, salt: 0.02, proof: 180, bake: "230°C 40 perc" },
+    magvas: { water: 0.75, starter: 0.35, salt: 0.02, proof: 210, bake: "220°C 45 perc" },
+    bagett: { water: 0.68, starter: 0.3, salt: 0.02, proof: 120, bake: "240°C 20-25 perc" },
