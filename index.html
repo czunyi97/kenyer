@@ -97,3 +97,65 @@
     alap: { water: 0.7, starter: 0.35, salt: 0.02, proof: 180, bake: "230°C 40 perc" },
     magvas: { water: 0.75, starter: 0.35, salt: 0.02, proof: 210, bake: "220°C 45 perc" },
     bagett: { water: 0.68, starter: 0.3, salt: 0.02, proof: 120, bake: "240°C 20-25 perc" },
+    kalacs: { water: 0.55, starter: 0.25, salt: 0.015, proof: 150, bake: "180°C 30-35 perc + tojáskenés" }
+  };
+
+  let timerInterval;
+
+  function calculate() {
+    clearInterval(timerInterval);
+
+    const type = document.getElementById("type").value;
+    const flour = parseInt(document.getElementById("flour").value);
+    const recipe = recipes[type];
+
+    const water = Math.round(flour * recipe.water);
+    const starter = Math.round(flour * recipe.starter);
+    const salt = Math.round(flour * recipe.salt);
+
+    document.getElementById("result").innerHTML = `
+      <h2>📋 Recept adatok</h2>
+      <p><b>Liszt:</b> ${flour} g</p>
+      <p><b>Víz:</b> ${water} g</p>
+      <p><b>Kovász:</b> ${starter} g</p>
+      <p><b>Só:</b> ${salt} g</p>
+      <h3>⚙️ Technológiai adatok</h3>
+      <p><b>Kelesztési idő:</b> ${recipe.proof} perc</p>
+      <p><b>Sütés:</b> ${recipe.bake}</p>
+    `;
+
+    startTimer(recipe.proof * 60);
+  }
+
+  function resetCalculator() {
+    document.getElementById("type").value = "alap";
+    document.getElementById("flour").value = 400;
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("timer").innerHTML = "";
+    clearInterval(timerInterval);
+  }
+
+  function startTimer(seconds) {
+    let remaining = seconds;
+    const timerEl = document.getElementById("timer");
+    timerEl.textContent = formatTime(remaining);
+
+    timerInterval = setInterval(() => {
+      remaining--;
+      timerEl.textContent = formatTime(remaining);
+      if (remaining <= 0) {
+        clearInterval(timerInterval);
+        timerEl.textContent = "⏰ Kelesztés kész!";
+      }
+    }, 1000);
+  }
+
+  function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${m}:${s.toString().padStart(2,'0')}`;
+  }
+</script>
+
+</body>
+</html>
