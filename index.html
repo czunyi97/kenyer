@@ -3,50 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <title>Kenyér Kalkulátor</title>
-  <style>
+   <style>
     body {
       font-family: Arial, sans-serif;
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      min-height: 100vh;
-      background: #f4e1d2;
-      text-align: center;
+      background: #edae6f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 20px;
+      min-height: 100vh;
+      margin: 0;
     }
 
     h1 {
       color: #5a3e2b;
     }
+
     select, input, button {
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
       width: 100%;
+      font-size: 1.2em;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
       box-sizing: border-box;
     }
+
+    button.calculate {
+      background-color: #27ae60;
+      color: white;
+      border: none;
+    }
+
+    button.reset {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+      
     label {
       display: inline-block;
       margin: 5px 10px;
       font-size: 14px;
-    }
-    button {
-      background: #5a3e2b;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #7a543d;
-    }
-    .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: #fafafa;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      text-align: left;
     }
   </style>
 </head>
@@ -169,3 +176,4 @@
   </script>
 </body>
 </html>
+
