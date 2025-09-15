@@ -6,6 +6,10 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      height: 100vh;
       background: #edae6f;
       text-align: center;
       padding: 20px;
@@ -96,9 +100,16 @@
 
       startTimer(recipe.proof * 60);
     }
+     function resetCalculator() {
+    value1.value = '';
+    value2.value = '';
+    display.value = '';
+    operation.value = '';
+  }
   </script>
 </body>
 </html>
+
 
 
 
