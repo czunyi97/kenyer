@@ -2,161 +2,170 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kenyér Kalkulátor</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #edae6f;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
       min-height: 100vh;
-      margin: 0;
+      background: #f4e1d2;
+      text-align: center;
+      padding: 20px;
     }
 
     h1 {
       color: #5a3e2b;
     }
-
     select, input, button {
-      width: 100%;
-      font-size: 1.2em;
-      padding: 12px;
+      padding: 10px;
       margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 100%;
       box-sizing: border-box;
     }
-
-    button.calculate {
-      background-color: #27ae60;
+    label {
+      display: inline-block;
+      margin: 5px 10px;
+      font-size: 14px;
+    }
+    button {
+      background: #5a3e2b;
       color: white;
       border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
-
-    button.reset {
-      background-color: #e74c3c;
-      color: white;
-      border: none;
+    button:hover {
+      background: #7a543d;
     }
-
     .result {
       margin-top: 20px;
       padding: 15px;
-      background: #fff;
+      background: #fafafa;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
       text-align: left;
-    }
-
-    .timer {
-      font-size: 1.5em;
-      margin-top: 15px;
-      color: #2b5a3e;
-      text-align: center;
     }
   </style>
 </head>
 <body>
+  <div class="calculator">
+    <h1>🥖 Kenyér Kalkulátor</h1>
 
-<div class="calculator">
-  <h1>🥖 Kenyér Kalkulátor</h1>
+    <label for="breadType">Kenyér típusa:</label>
+    <select id="breadType"></select>
 
-  <label for="type">Kenyér típusa:</label>
-  <select id="type">
-    <option value="alap">Alap kenyér</option>
-    <option value="magvas">Magvas kenyér</option>
-    <option value="bagett">Bagett / Zsemle</option>
-    <option value="kalacs">Édes kalács</option>
-  </select>
+    <label for="flour">Liszt mennyisége (g):</label>
+    <input type="number" id="flour" value="500">
 
-  <label for="flour">Liszt mennyisége (g):</label>
-  <input type="number" id="flour" value="400" min="0">
+    <div>
+      <label>
+        <input type="radio" name="ferment" value="kovasz" checked> Kovászos
+      </label>
+      <label>
+        <input type="radio" name="ferment" value="eleszto"> Élesztős
+      </label>
+    </div>
 
-  <button class="calculate" onclick="calculate()">Számolás</button>
-  <button class="reset" onclick="resetCalculator()">Reset</button>
+    <button onclick="calculate()">Számolás</button>
+    <button onclick="resetCalc()">Reset</button>
 
-  <div class="result" id="result"></div>
-  <div class="timer" id="timer"></div>
-</div>
+    <div class="result" id="result"></div>
+  </div>
 
-<script>
-  const recipes = {
-    alap: { water: 0.7, starter: 0.35, salt: 0.02, proof: 180, bake: "230°C 40 perc" },
-    magvas: { water: 0.75, starter: 0.35, salt: 0.02, proof: 210, bake: "220°C 45 perc" },
-    bagett: { water: 0.68, starter: 0.3, salt: 0.02, proof: 120, bake: "240°C 20-25 perc" },
-    kalacs: { water: 0.55, starter: 0.25, salt: 0.015, proof: 150, bake: "180°C 30-35 perc + tojáskenés" }
-  };
-
-  let timerInterval;
-
-  function calculate() {
-    clearInterval(timerInterval);
-
-    const type = document.getElementById("type").value;
-    let flour = parseInt(document.getElementById("flour").value);
-    if (isNaN(flour) || flour <= 0) {
-      alert("Kérlek adj meg egy liszt mennyiséget!");
-      return;
-    }
-
-    const recipe = recipes[type];
-    if (!recipe) {
-      alert("Válassz egy kenyértípust!");
-      return;
-    }
-
-    const water = Math.round(flour * recipe.water);
-    const starter = Math.round(flour * recipe.starter);
-    const salt = Math.round(flour * recipe.salt);
-
-    document.getElementById("result").innerHTML = `
-      <h2>📋 Recept adatok</h2>
-      <p><b>Liszt:</b> ${flour} g</p>
-      <p><b>Víz:</b> ${water} g</p>
-      <p><b>Kovász:</b> ${starter} g</p>
-      <p><b>Só:</b> ${salt} g</p>
-      <h3>⚙️ Technológiai adatok</h3>
-      <p><b>Kelesztési idő:</b> ${recipe.proof} perc</p>
-      <p><b>Sütés:</b> ${recipe.bake}</p>
-    `;
-
-    startTimer(recipe.proof * 60);
-  }
-
-  function resetCalculator() {
-    document.getElementById("type").value = "alap";
-    document.getElementById("flour").value = 400;
-    document.getElementById("result").innerHTML = "";
-    document.getElementById("timer").innerHTML = "";
-    clearInterval(timerInterval);
-  }
-
-  function startTimer(seconds) {
-    let remaining = seconds;
-    const timerEl = document.getElementById("timer");
-    timerEl.textContent = formatTime(remaining);
-
-    timerInterval = setInterval(() => {
-      remaining--;
-      timerEl.textContent = formatTime(remaining);
-      if (remaining <= 0) {
-        clearInterval(timerInterval);
-        timerEl.textContent = "⏰ Kelesztés kész!";
+  <script>
+    // Recepttár
+    const recipes = {
+      feher: {
+        name: "Fehér kenyér",
+        kovasz: function (flour) {
+          let water = flour * 0.65;
+          let starter = flour * 0.3;
+          let salt = 10;
+          let total = flour + water + starter + salt;
+          let baked = Math.round(total * 0.88);
+          return {
+            ingredients: `${flour} g liszt, ${water} ml víz, ${starter} g kovász, ${salt} g só`,
+            baked: baked
+          };
+        },
+        eleszto: function (flour) {
+          let water = flour * 0.6;
+          let yeast = 5;
+          let salt = 10;
+          let total = flour + water + yeast + salt;
+          let baked = Math.round(total * 0.88);
+          return {
+            ingredients: `${flour} g liszt, ${water} ml víz, ${yeast} g élesztő, ${salt} g só`,
+            baked: baked
+          };
+        }
+      },
+      kalacs: {
+        name: "Kalács",
+        kovasz: function (flour) {
+          let milk = flour * 0.4;
+          let starter = flour * 0.25;
+          let sugar = 50, butter = 20, egg = 1;
+          let total = flour + milk + starter + sugar + butter + 50; // tojást kb. 50g-nak számoljuk
+          let baked = Math.round(total * 0.9);
+          return {
+            ingredients: `${flour} g liszt, ${milk} ml tej, ${starter} g kovász, ${sugar} g cukor, ${butter} g vaj, ${egg} tojás`,
+            baked: baked
+          };
+        },
+        eleszto: function (flour) {
+          let milk = flour * 0.45;
+          let yeast = 7;
+          let sugar = 50, butter = 20, egg = 1;
+          let total = flour + milk + yeast + sugar + butter + 50;
+          let baked = Math.round(total * 0.9);
+          return {
+            ingredients: `${flour} g liszt, ${milk} ml tej, ${yeast} g élesztő, ${sugar} g cukor, ${butter} g vaj, ${egg} tojás`,
+            baked: baked
+          };
+        }
       }
-    }, 1000);
-  }
+    };
 
-  function formatTime(sec) {
-    const m = Math.floor(sec / 60);
-    const s = sec % 60;
-    return `${m}:${s.toString().padStart(2,'0')}`;
-  }
-</script>
+    // Legördülő feltöltése
+    const breadSelect = document.getElementById("breadType");
+    for (let key in recipes) {
+      let option = document.createElement("option");
+      option.value = key;
+      option.textContent = recipes[key].name;
+      breadSelect.appendChild(option);
+    }
 
+    // Számolás
+    function calculate() {
+      let breadType = document.getElementById("breadType").value;
+      let flour = parseInt(document.getElementById("flour").value);
+      let ferment = document.querySelector('input[name="ferment"]:checked').value;
+      let resultDiv = document.getElementById("result");
+
+      if (!flour) {
+        resultDiv.textContent = "❗ Kérlek, add meg a liszt mennyiségét!";
+        return;
+      }
+
+      let recipe = recipes[breadType];
+      let data = recipe[ferment](flour);
+
+      resultDiv.innerHTML = `
+        <h3>${recipe.name} (${ferment === "kovasz" ? "Kovászos" : "Élesztős"})</h3>
+        <p><b>Hozzávalók:</b> ${data.ingredients}</p>
+        <p><b>Várható kisült súly:</b> ~${data.baked} g</p>
+      `;
+    }
+
+    // Reset
+    function resetCalc() {
+      document.getElementById("flour").value = "";
+      document.getElementById("result").innerHTML = "";
+    }
+  </script>
 </body>
 </html>
-
-
