@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Kenyér Kalkulátor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f5f2;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #5a3e2b;
+    }
+    select, input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .timer {
+      font-size: 2em;
+      margin-top: 20px;
+      color: #2b5a3e;
+    }
+  </style>
+</head>
+<body>
+  <h1>🥖 Kenyér Kalkulátor</h1>
+  <label for="type">Kenyér típusa:</label>
+  <select id="type">
+    <option value="alap">Alap kenyér</option>
+    <option value="magvas">Magvas kenyér</option>
+    <option value="bagett">Bagett / Zsemle</option>
+    <option value="kalacs">Édes kalács</option>
+  </select>
+  <br>
+  <label for="flour">Liszt mennyisége (g):</label>
+  <input type="number" id="flour" value="400">
+  <br>
+  <button onclick="calculate()">Számolás</button>
+  
+  <div class="result" id="result"></div>
+  <div class="timer" id="timer"></div>
+  
+  <script>
+    const recipes = {
+      alap: { water: 0.7, starter: 0.35, salt: 0.02, proof: 180, bake: "230°C 40 perc" },
+      magvas: { water: 0.75, starter: 0.35, salt: 0.02, proof: 210, bake: "220°C 45 perc" },
+      bagett: { water: 0.68, starter: 0.3, salt: 0.02, proof: 120, bake: "240°C 20-25 perc" },
+      kalacs: { water: 0.55, starter: 0.25, salt: 0.015, proof: 150, bake: "180°C 30-35 perc + tojáskenés" }
+    };
+
+    let timerInterval;
+
+    function calculate() {
+      clearInterval(timerInterval);
+      const type = document.getElementById("type").value;
+      const flour = parseInt(document.getElementById("flour").value);
+      const recipe = recipes[type];
+
+      const water = Math.round(flour * recipe.water);
+      const starter = Math.round(flour * recipe.starter);
+      const salt = Math.round(flour * recipe.salt);
+
+      document.getElementById("result").innerHTML = `
+        <h2>📋 Recept adatok</h2>
+        <p><b>Liszt:</b> ${flour} g</p>
+        <p><b>Víz:</b> ${water} g</p>
+        <p><b>Kovász:</b> ${starter} g</p>
+        <p><b>Só:</b> ${salt} g</p>
+        <h3>⚙️ Technológiai adatok</h3>
+        <p><b>Kelesztési idő:</b> ${recipe.proof} perc</p>
+        <p><b>Sütés:</b> ${recipe.bake}</p>
+      `;
+
+      startTimer(recipe.proof * 60);
+    }
+
+    function startTimer(duration) {
+      let timer = duration;
+      const display = document.getElementById("timer");
+
+      timerInterval = setInterval(() => {
+        const minutes = Math.floor(timer / 60);
+        const seconds = timer % 60;
+        display.textContent = `⏳ Hátralévő idő: ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        if (--timer < 0) {
+          clearInterval(timerInterval);
+          display.textContent = "✅ Kelesztés kész!";
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
