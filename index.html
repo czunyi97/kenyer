@@ -131,7 +131,7 @@
       }
 
       // Hozzávalók
-      outputHTML += `<h3>🥣 Hozzávalók (${mode}):</h3>`;
+      outputHTML += `<h3>🥣 Hozzávalók:</h3>`;
       for (const [key, value] of Object.entries(data)) {
         let displayValue = (typeof value === "number" && value < 1) ? Math.round(flourInput * value) + " g" : value + " g";
         totalWeight += parseInt(displayValue) || 0;
@@ -186,4 +186,5 @@
   </script>
 </body>
 </html>
+
 
