@@ -1,0 +1,14 @@
+[
+  {
+    "id": "feher",
+    "name": "Fehér kenyér",
+    "kovasz": { "water": 0.65, "starter": 0.3, "salt": 10 },
+    "eleszto": { "water": 0.6, "yeast": 5, "salt": 10 }
+  },
+  {
+    "id": "kalacs",
+    "name": "Kalács",
+    "kovasz": { "milk": 0.4, "starter": 0.25, "sugar": 50, "butter": 20, "egg": 1 },
+    "eleszto": { "milk": 0.45, "yeast": 7, "sugar": 50, "butter": 20, "egg": 1 }
+  }
+]
