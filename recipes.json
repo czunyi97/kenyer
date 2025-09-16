@@ -9,8 +9,8 @@
   {
     "id": "rozsos",
     "name": "Rozsos kenyér",
-    "kovasz": "Rozs/Búza 50/50" { "Víz": 0.7, "Kovász": 0.25, "Só": 0.02 },
-    "eleszto": "Rozs/Búza 50/50" {"Víz": 0.7, "Élesztő": 5, "Só": 0.02 },
+    "kovasz": { "Víz": 0.7, "Kovász": 0.25, "Só": 0.02 },
+    "eleszto": {"Rozs/Búza 50/50","Víz": 0.7, "Élesztő": 0.02, "Só": 0.02 },
     "technologia": "Kelesztés: Bulk: 3-4 óra + hajtogatás + végső: 1-1,5 óra / hűtő 8-tól "
   },
   {
@@ -21,6 +21,7 @@
     "technologia": "180°C-on 30-35 perc, tojással lekenve sütés előtt"
   }
 ]
+
 
 
 
