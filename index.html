@@ -125,6 +125,11 @@
 
       output += `<h3>⚖️ Várható kisült súly:</h3>`;
       output += `<p><b>${bakedWeight} g</b></p>`;
+      
+      if (recipe.technologia) {
+       output += `<h3>⚙️ Technológiai adatok</h3>`;
+       output += `<p>${recipe.technologia}</p>`;
+      }
 
       document.getElementById("result").innerHTML = output;
     }
@@ -139,4 +144,5 @@
   </script>
 </body>
 </html>
+
 
