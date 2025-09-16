@@ -93,7 +93,7 @@
     </div>
   </div>
 
-  <script>
+   <script>
     let recipes = [];
 
     async function loadRecipes() {
@@ -115,26 +115,26 @@
     function calculate() {
       const type = document.getElementById("type").value;
       const mode = document.getElementById("mode").value;
-      const flour = parseInt(document.getElementById("flour").value);
+      const flourInput = parseInt(document.getElementById("flour").value);
 
       const recipe = recipes.find(r => r.id === type);
       const data = recipe[mode];
 
-      let totalWeight = flour;
-      const stepsContainer = document.getElementById("steps");
-      stepsContainer.innerHTML = "";
-
+      let totalWeight = flourInput;
       let outputHTML = `<h2>📋 Recept adatok</h2>`;
-      outputHTML += `<p class="ingredient"><i class="fas fa-bread-slice"></i> <b>Liszt:</b> ${flour} g</p>`;
 
+      // Liszt keverék
+      outputHTML += `<h3>🌾 Liszt keverék:</h3>`;
+      for (const [flourName, ratio] of Object.entries(recipe.flour)) {
+        const amount = Math.round(flourInput * ratio);
+        outputHTML += `<p class="ingredient"><i class="fas fa-seedling"></i> <b>${flourName}:</b> ${amount} g</p>`;
+      }
+
+      // Hozzávalók
+      outputHTML += `<h3>🥣 Hozzávalók (${mode}):</h3>`;
       for (const [key, value] of Object.entries(data)) {
-        let displayValue;
-        if (typeof value === "number") {
-          displayValue = value < 1 ? Math.round(flour * value) + " g" : Math.round(value) + " g";
-          totalWeight += parseInt(displayValue);
-        } else {
-          displayValue = value;
-        }
+        let displayValue = (typeof value === "number" && value < 1) ? Math.round(flourInput * value) + " g" : value + " g";
+        totalWeight += parseInt(displayValue) || 0;
 
         let icon = "";
         switch(key.toLowerCase()) {
@@ -152,6 +152,7 @@
         outputHTML += `<p class="ingredient">${icon} <b>${key}:</b> ${displayValue}</p>`;
       }
 
+      // Várható kisült súly
       const bakedWeight = Math.round(totalWeight * 0.88);
       outputHTML += `<h3>⚖️ Várható kisült súly:</h3>`;
       outputHTML += `<p class="ingredient"><i class='fas fa-weight'></i> <b>${bakedWeight} g</b></p>`;
@@ -162,7 +163,7 @@
       const bar = document.getElementById("weightBar");
       setTimeout(()=>{ bar.style.width = '100%'; bar.textContent = bakedWeight + " g"; },100);
 
-      // Animate steps
+      // Animate technológiai lépések
       if(recipe.technologia) {
         const stepsArray = recipe.technologia.split(",");
         const stepsDiv = document.getElementById("steps");
@@ -185,3 +186,4 @@
   </script>
 </body>
 </html>
+
