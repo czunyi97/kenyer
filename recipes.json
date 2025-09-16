@@ -4,8 +4,8 @@
     "name": "Fehér kenyér",
     "flour": {"Liszt BL80": 1},
     "kovasz": { "Víz": 0.65, "Kovász": 0.3, "Só": 0.02 },
-    "eleszto": { "Víz": 0.6, "Élesztő": 5, "Só": 0.02 },
-    "technologia": "Kelesztés:, Bulk: 4-5 óra + hajtogatás, Végső: 1.5-2 óra / hűtő 8-tól,Sűtés:, 230°C 15perc, 200°C 450perc"
+    "eleszto": { "Víz": 0.6, "Élesztő": 5, "Só": 0.02 }, 
+    "technologia": "Kelesztés: Bulk: 4-5 óra + hajtogatás Végső: 1.5-2 óra / hűtő 8-tól,Sűtés: 230°C 15perc 200°C 45perc"
   },
   {
     "id": "rozsos",
