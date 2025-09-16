@@ -22,9 +22,7 @@
       width: 100%;        
       max-width: 400px;  
     }
-    h1 {
-      color: #5a3e2b;
-    }
+    h1 { color: #5a3e2b; }
     select, input, button {
       padding: 10px;
       margin: 10px;
@@ -78,14 +76,12 @@
     let recipes = [];
     let timerInterval;
 
-    // JSON betöltése
     async function loadRecipes() {
-      const response = await fetch("recipes.json"); // ha GitHub Pages-re feltöltöd, írd be a teljes URL-t
+      const response = await fetch("recipes.json");
       recipes = await response.json();
       populateSelect();
     }
 
-    // Legördülő feltöltése JSON alapján
     function populateSelect() {
       const typeSelect = document.getElementById("type");
       recipes.forEach(r => {
@@ -96,7 +92,6 @@
       });
     }
 
-    // Számolás
     function calculate() {
       clearInterval(timerInterval);
 
@@ -112,23 +107,28 @@
 
       let totalWeight = flour;
 
+      // 🔹 Dinamikus feldolgozás, szám és szöveg kezelés
       for (const [key, value] of Object.entries(data)) {
-        const amount = Math.round(
-          typeof value === "number" && value < 1 ? flour * value : value
-        );
-        output += `<p><b>${key}:</b> ${amount} g</p>`;
-        totalWeight += amount;
+        let displayValue;
+        if (typeof value === "number") {
+          // <1 → arány, >=1 → százalék
+          if (value < 1) displayValue = Math.round(flour * value) + " g";
+          else displayValue = Math.round(flour * (value / 100)) + " g";
+          totalWeight += parseInt(displayValue); // hozzáadjuk a teljes súlyhoz
+        } else if (typeof value === "string") {
+          displayValue = value; // pl. "1 db tojás"
+        }
+        output += `<p><b>${key}:</b> ${displayValue}</p>`;
       }
 
-      // várható kisült súly (10-15% veszteség)
+      // várható kisült súly
       const bakedWeight = Math.round(totalWeight * 0.88);
-
       output += `<h3>⚖️ Várható kisült súly:</h3>`;
       output += `<p><b>${bakedWeight} g</b></p>`;
-      
+
       if (recipe.technologia) {
-       output += `<h4>⚙️ Technológiai adatok</h4>`;
-       output += `<p>${recipe.technologia}</p>`;
+        output += `<h4>⚙️ Technológiai adatok</h4>`;
+        output += `<p>${recipe.technologia}</p>`;
       }
 
       document.getElementById("result").innerHTML = output;
@@ -144,6 +144,3 @@
   </script>
 </body>
 </html>
-
-
-
