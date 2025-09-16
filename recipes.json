@@ -11,14 +11,14 @@
     "name": "Rozsos kenyér",
     "kovasz": {"Víz": 0.7, "Kovász": 0.25, "Só": 0.02 },
     "eleszto": {"Víz": 0.7, "Élesztő": 0.02, "Só": 0.02 },
-    "technologia": "Kelesztés: Bulk: 3-4 óra + hajtogatás + végső: 1-1,5 óra / hűtő 8-tól "
+    "technologia": "Kelesztés: Bulk: 3-4 óra + hajtogatás, Végső: 1-1.5 óra / hűtő 8-tól "
   },
   {
     "id": "kalacs",
     "name": "Kalács",
     "kovasz": { "Tej": 0.4, "Kovász": 0.25, "Cukor": 50, "Vaj": 20, "Tojás": 1 },
     "eleszto": { "Tej": 0.45, "Élesztő": 7, "Cukor": 50, "Vaj": 20, "Tojás": 1 },
-    "technologia": "180°C-on 30-35 perc, tojással lekenve sütés előtt"
+    "technologia": "180°C-on 30-35 perc tojással lekenve sütés előtt"
   }
 ]
 
