@@ -4,12 +4,15 @@
     "name": "Fehér kenyér",
     "kovasz": { "Víz": 0.65, "Kovász": 0.3, "Só": 10 },
     "eleszto": { "Víz": 0.6, "Élesztő": 5, "Só": 10 }
+    "technologia": "180°C-on 30-35 perc, tojással lekenve sütés előtt"
   },
   {
     "id": "kalacs",
     "name": "Kalács",
     "kovasz": { "Tej": 0.4, "Kovász": 0.25, "Cukor": 50, "Vaj": 20, "Tojás": 1 },
     "eleszto": { "Tej": 0.45, "Élesztő": 7, "Cukor": 50, "Vaj": 20, "Tojás": 1 }
+    "technologia": "180°C-on 30-35 perc, tojással lekenve sütés előtt"
   }
 ]
+
 
