@@ -4,160 +4,211 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kenyér Kalkulátor</title>
+  <!-- Ikonokhoz FontAwesome CDN -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #edae6f;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #fceabb, #f8b500);
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
       min-height: 100vh;
-      margin: 0;
+    }
+
+    .calculator {
+      background: #fff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      width: 95%;
+      max-width: 480px;
+      text-align: center;
+      transition: all 0.3s ease;
     }
 
     h1 {
       color: #5a3e2b;
+      margin-bottom: 20px;
+      font-size: 2em;
     }
 
-    select, input, button {
+    label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      color: #5a3e2b;
+    }
+
+    select, input {
       width: 100%;
-      font-size: 1.2em;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 5px;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 10px;
       border: 1px solid #ccc;
+      margin-bottom: 15px;
       box-sizing: border-box;
     }
 
-    button.calculate {
-      background-color: #27ae60;
-      color: white;
+    button {
+      width: 48%;
+      padding: 14px;
+      font-size: 18px;
       border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 5px 1%;
+      font-weight: bold;
+      color: #fff;
+      transition: all 0.2s ease-in-out;
     }
 
-    button.reset {
-      background-color: #e74c3c;
-      color: white;
-      border: none;
-    }
+    .calculate-btn { background-color: #27ae60; }
+    .calculate-btn:hover { background-color: #2ecc71; transform: translateY(-2px); }
+
+    .reset-btn { background-color: #e74c3c; }
+    .reset-btn:hover { background-color: #ff6666; transform: translateY(-2px); }
 
     .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 25px;
+      padding: 20px;
+      background: #fdf3e7;
+      border-radius: 15px;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
       text-align: left;
+      transition: all 0.3s ease;
     }
 
-    .timer {
-      font-size: 1.5em;
-      margin-top: 15px;
-      color: #2b5a3e;
-      text-align: center;
+    .result h2, .result h3, .result h4 {
+      color: #5a3e2b;
+      margin: 10px 0;
+    }
+
+    .ingredient {
+      font-size: 1.1em;
+      margin: 5px 0;
+    }
+
+    .ingredient i {
+      margin-right: 8px;
+      color: #f39c12;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.7em; }
+      button { font-size: 16px; padding: 12px; }
+      select, input { font-size: 15px; padding: 12px; }
     }
   </style>
 </head>
 <body>
+  <div class="calculator">
+    <h1>🥖 Kenyér Kalkulátor</h1>
 
-<div class="calculator">
-  <h1>🥖 Kenyér Kalkulátor</h1>
+    <label for="type">Kenyér típusa:</label>
+    <select id="type"></select>
 
-  <label for="type">Kenyér típusa:</label>
-  <select id="type">
-    <option value="alap">Alap kenyér</option>
-    <option value="magvas">Magvas kenyér</option>
-    <option value="bagett">Bagett / Zsemle</option>
-    <option value="kalacs">Édes kalács</option>
-  </select>
+    <label for="mode">Kovász / Élesztő:</label>
+    <select id="mode">
+      <option value="kovasz">Kovászos</option>
+      <option value="eleszto">Élesztős</option>
+    </select>
 
-  <label for="flour">Liszt mennyisége (g):</label>
-  <input type="number" id="flour" value="400" min="0">
+    <label for="flour">Liszt mennyisége (g):</label>
+    <input type="number" id="flour" value="100">
 
-  <button class="calculate" onclick="calculate()">Számolás</button>
-  <button class="reset" onclick="resetCalculator()">Reset</button>
+    <div style="display:flex; justify-content: space-between;">
+      <button class="calculate-btn" onclick="calculate()"><i class="fas fa-calculator"></i> Számolás</button>
+      <button class="reset-btn" onclick="resetCalculator()"><i class="fas fa-undo"></i> Reset</button>
+    </div>
 
-  <div class="result" id="result"></div>
-  <div class="timer" id="timer"></div>
-</div>
+    <div class="result" id="result"></div>
+  </div>
 
-<script>
-  const recipes = {
-    alap: { water: 0.7, starter: 0.35, salt: 0.02, proof: 180, bake: "230°C 40 perc" },
-    magvas: { water: 0.75, starter: 0.35, salt: 0.02, proof: 210, bake: "220°C 45 perc" },
-    bagett: { water: 0.68, starter: 0.3, salt: 0.02, proof: 120, bake: "240°C 20-25 perc" },
-    kalacs: { water: 0.55, starter: 0.25, salt: 0.015, proof: 150, bake: "180°C 30-35 perc + tojáskenés" }
-  };
+  <script>
+    let recipes = [];
 
-  let timerInterval;
-
-  function calculate() {
-    clearInterval(timerInterval);
-
-    const type = document.getElementById("type").value;
-    let flour = parseInt(document.getElementById("flour").value);
-    if (isNaN(flour) || flour <= 0) {
-      alert("Kérlek adj meg egy liszt mennyiséget!");
-      return;
+    async function loadRecipes() {
+      const response = await fetch("recipes.json");
+      recipes = await response.json();
+      populateSelect();
     }
 
-    const recipe = recipes[type];
-    if (!recipe) {
-      alert("Válassz egy kenyértípust!");
-      return;
+    function populateSelect() {
+      const typeSelect = document.getElementById("type");
+      recipes.forEach(r => {
+        const option = document.createElement("option");
+        option.value = r.id;
+        option.textContent = r.name;
+        typeSelect.appendChild(option);
+      });
     }
 
-    const water = Math.round(flour * recipe.water);
-    const starter = Math.round(flour * recipe.starter);
-    const salt = Math.round(flour * recipe.salt);
+    function calculate() {
+      const type = document.getElementById("type").value;
+      const mode = document.getElementById("mode").value;
+      const flour = parseInt(document.getElementById("flour").value);
 
-    document.getElementById("result").innerHTML = `
-      <h2>📋 Recept adatok</h2>
-      <p><b>Liszt:</b> ${flour} g</p>
-      <p><b>Víz:</b> ${water} g</p>
-      <p><b>Kovász:</b> ${starter} g</p>
-      <p><b>Só:</b> ${salt} g</p>
-      <h3>⚙️ Technológiai adatok</h3>
-      <p><b>Kelesztési idő:</b> ${recipe.proof} perc</p>
-      <p><b>Sütés:</b> ${recipe.bake}</p>
-    `;
+      const recipe = recipes.find(r => r.id === type);
+      const data = recipe[mode];
 
-    startTimer(recipe.proof * 60);
-  }
+      let output = `<h2>📋 Recept adatok</h2>`;
+      output += `<p class="ingredient"><i class="fas fa-bread-slice"></i> <b>Liszt:</b> ${flour} g</p>`;
 
-  function resetCalculator() {
-    document.getElementById("type").value = "alap";
-    document.getElementById("flour").value = 400;
-    document.getElementById("result").innerHTML = "";
-    document.getElementById("timer").innerHTML = "";
-    clearInterval(timerInterval);
-  }
+      let totalWeight = flour;
 
-  function startTimer(seconds) {
-    let remaining = seconds;
-    const timerEl = document.getElementById("timer");
-    timerEl.textContent = formatTime(remaining);
+      for (const [key, value] of Object.entries(data)) {
+        let displayValue;
+        if (typeof value === "number") {
+          displayValue = value < 1 ? Math.round(flour * value) + " g" : Math.round(value) + " g";
+          totalWeight += parseInt(displayValue);
+        } else {
+          displayValue = value;
+        }
 
-    timerInterval = setInterval(() => {
-      remaining--;
-      timerEl.textContent = formatTime(remaining);
-      if (remaining <= 0) {
-        clearInterval(timerInterval);
-        timerEl.textContent = "⏰ Kelesztés kész!";
+        // Ikonok hozzáadása alapanyagokhoz
+        let icon = "";
+        switch (key.toLowerCase()) {
+          case "víz": icon = "<i class='fas fa-tint'></i>"; break;
+          case "kovász": icon = "<i class='fas fa-seedling'></i>"; break;
+          case "élesztő": icon = "<i class='fas fa-leaf'></i>"; break;
+          case "só": icon = "<i class='fas fa-snowflake'></i>"; break;
+          case "cukor": icon = "<i class='fas fa-candy-cane'></i>"; break;
+          case "vaj": icon = "<i class='fas fa-butter'></i>"; break;
+          case "tojás": icon = "<i class='fas fa-egg'></i>"; break;
+          case "tej": icon = "<i class='fas fa-glass-whiskey'></i>"; break;
+          default: icon = "<i class='fas fa-utensils'></i>";
+        }
+
+        output += `<p class="ingredient">${icon} <b>${key}:</b> ${displayValue}</p>`;
       }
-    }, 1000);
-  }
 
-  function formatTime(sec) {
-    const m = Math.floor(sec / 60);
-    const s = sec % 60;
-    return `${m}:${s.toString().padStart(2,'0')}`;
-  }
-</script>
+      const bakedWeight = Math.round(totalWeight * 0.88);
+      output += `<h3>⚖️ Várható kisült súly:</h3>`;
+      output += `<p class="ingredient"><i class='fas fa-weight'></i> <b>${bakedWeight} g</b></p>`;
 
+      if (recipe.technologia) {
+        output += `<h4>⚙️ Technológiai adatok</h4>`;
+        output += `<p>${recipe.technologia}</p>`;
+      }
+
+      document.getElementById("result").innerHTML = output;
+    }
+
+    function resetCalculator() {
+      document.getElementById("flour").value = "";
+      document.getElementById("result").innerHTML = "";
+    }
+
+    loadRecipes();
+  </script>
 </body>
 </html>
+
 
 
 
