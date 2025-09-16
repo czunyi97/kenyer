@@ -2,9 +2,16 @@
   {
     "id": "feher",
     "name": "Fehér kenyér",
-    "kovasz": { "Víz": 0.65, "Kovász": 0.3, "Só": 10 },
-    "eleszto": { "Víz": 0.6, "Élesztő": 5, "Só": 10 },
-    "technologia": "180°C-on 30-35 perc, tojással lekenve sütés előtt"
+    "kovasz": { "Víz": 0.65, "Kovász": 0.3, "Só": 0.02 },
+    "eleszto": { "Víz": 0.6, "Élesztő": 5, "Só": 0.02 },
+    "technologia": "Kelesztés: Bulk: 4-5 óra + hajtogatás + végső: 1,5-2 óra / hűtő 8-tól "
+  },
+  {
+    "id": "rozsos",
+    "name": "Rozsos kenyér",
+    "kovasz": { "Rozs": 0.5,"Búza": 0.5,"Víz": 0.7,"Víz": 0.7, "Kovász": 0.25, "Só": 0.02 },
+    "eleszto": { "Rozs": 0.5,"Búza": 0.5,"Víz": 0.7, "Élesztő": 5, "Só": 0.02 },
+    "technologia": "Kelesztés: Bulk: 3-4 óra + hajtogatás + végső: 1-1,5 óra / hűtő 8-tól "
   },
   {
     "id": "kalacs",
@@ -14,6 +21,7 @@
     "technologia": "180°C-on 30-35 perc, tojással lekenve sütés előtt"
   }
 ]
+
 
 
 
