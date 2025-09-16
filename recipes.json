@@ -2,7 +2,7 @@
   {
     "id": "feher",
     "name": "Fehér kenyér",
-    "flour": {"BL80 liszt": 1},
+    "flour": {"Liszt BL80": 1},
     "kovasz": { "Víz": 0.65, "Kovász": 0.3, "Só": 0.02 },
     "eleszto": { "Víz": 0.6, "Élesztő": 5, "Só": 0.02 },
     "technologia": "Kelesztés: Bulk: 4-5 óra + hajtogatás, Végső: 1.5-2 óra / hűtő 8-tól "
@@ -10,7 +10,7 @@
   {
     "id": "rozsos",
     "name": "Rozsos kenyér",
-    "flour": {"BL80 liszt": 0.5,"rozs": 0.5},
+    "flour": {"Liszt BL80": 0.5,"Rozs": 0.5},
     "kovasz": {"Víz": 0.7, "Kovász": 0.25, "Só": 0.02 },
     "eleszto": {"Víz": 0.7, "Élesztő": 0.02, "Só": 0.02 },
     "technologia": "Kelesztés: Bulk: 3-4 óra + hajtogatás, Végső: 1-1.5 óra / hűtő 8-tól "
@@ -18,12 +18,13 @@
   {
     "id": "kalacs",
     "name": "Kalács",
-    "flour": {"BL80 liszt": 1},
+    "flour": {"Liszt BL80": 1},
     "kovasz": { "Tej": 0.4, "Kovász": 0.25, "Cukor": 50, "Vaj": 20, "Tojás": 1 },
     "eleszto": { "Tej": 0.45, "Élesztő": 7, "Cukor": 50, "Vaj": 20, "Tojás": 1 },
     "technologia": "180°C-on 30-35 perc tojással lekenve sütés előtt"
   }
 ]
+
 
 
 
