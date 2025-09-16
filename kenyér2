@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenyér Kalkulátor</title>
+  <style>
+    /* ---- Alap stílusok ---- */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #fceabb, #f8b500);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .calculator {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #5a3e2b;
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      color: #5a3e2b;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 48%;
+      padding: 12px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 5px 1%;
+      font-weight: bold;
+      transition: all 0.2s ease-in-out;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .calculate-btn { background-color: #f8b500; color: #fff; }
+    .reset-btn { background-color: #e74c3c; color: #fff; }
+
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #fdf3e7;
+      border-radius: 12px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+
+    .result h2, .result h3, .result h4 {
+      color: #5a3e2b;
+      margin: 10px 0;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 480px) {
+      h1 { font-size: 1.7em; }
+      button { font-size: 16px; padding: 10px; }
+      select, input { font-size: 15px; padding: 10px; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1>🥖 Kenyér Kalkulátor</h1>
+
+    <label for="type">Kenyér típusa:</label>
+    <select id="type"></select>
+
+    <label for="mode">Kovász / Élesztő:</label>
+    <select id="mode">
+      <option value="kovasz">Kovászos</option>
+      <option value="eleszto">Élesztős</option>
+    </select>
+
+    <label for="flour">Liszt mennyisége (g):</label>
+    <input type="number" id="flour" value="100">
+
+    <div style="display:flex; justify-content: space-between;">
+      <button class="calculate-btn" onclick="calculate()">Számolás</button>
+      <button class="reset-btn" onclick="resetCalculator()">Reset</button>
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    let recipes = [];
+    let timerInterval;
+
+    async function loadRecipes() {
+      const response = await fetch("recipes.json");
+      recipes = await response.json();
+      populateSelect();
+    }
+
+    function populateSelect() {
+      const typeSelect = document.getElementById("type");
+      recipes.forEach(r => {
+        const option = document.createElement("option");
+        option.value = r.id;
+        option.textContent = r.name;
+        typeSelect.appendChild(option);
+      });
+    }
+
+    function calculate() {
+      clearInterval(timerInterval);
+
+      const type = document.getElementById("type").value;
+      const mode = document.getElementById("mode").value;
+      const flour = parseInt(document.getElementById("flour").value);
+
+      const recipe = recipes.find(r => r.id === type);
+      const data = recipe[mode];
+
+      let output = `<h2>📋 Recept adatok</h2>`;
+      output += `<p><b>Liszt:</b> ${flour} g</p>`;
+
+      let totalWeight = flour;
+
+      // 🔹 Dinamikus feldolgozás, szám és szöveg kezelés
+      for (const [key, value] of Object.entries(data)) {
+        let displayValue;
+        if (typeof value === "number") {
+          // <1 → arány, >=1 → százalék
+          if (value < 1) displayValue = Math.round(flour * value) + " g";
+          else displayValue = Math.round(flour * (value / 100)) + " g";
+          totalWeight += parseInt(displayValue); // hozzáadjuk a teljes súlyhoz
+        } else if (typeof value === "string") {
+          displayValue = value; // pl. "1 db tojás"
+        }
+        output += `<p><b>${key}:</b> ${displayValue}</p>`;
+      }
+
+      // várható kisült súly
+      const bakedWeight = Math.round(totalWeight * 0.88);
+      output += `<h3>⚖️ Várható kisült súly:</h3>`;
+      output += `<p><b>${bakedWeight} g</b></p>`;
+
+      if (recipe.technologia) {
+        output += `<h4>⚙️ Technológiai adatok</h4>`;
+        output += `<p>${recipe.technologia}</p>`;
+      }
+
+      document.getElementById("result").innerHTML = output;
+    }
+
+    function resetCalculator() {
+      document.getElementById("flour").value = "";
+      document.getElementById("result").innerHTML = "";
+      document.getElementById("timer").innerHTML = "";
+    }
+
+    loadRecipes();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
