@@ -1,30 +1,93 @@
 [
   {
     "id": "feher",
-    "name": "Fehér kenyér",
-    "flour": {"Liszt BL80": 1},
-    "kovasz": { "Víz": 0.65, "Kovász": 0.3, "Só": 0.02 },
-    "eleszto": { "Víz": 0.6, "Élesztő": 5, "Só": 0.02 }, 
-    "technologia": "Kelesztés: Bulk: 4-5 óra + hajtogatás Végső: 1.5-2 óra / hűtő 8-tól,Sűtés: 230°C 15perc 200°C 45perc"
+    "name": "Fehér kenyér (parasztkenyér)",
+    "flour": {"BL80": 1},
+    "kovasz": {"Víz": 0.65, "Kovász": 0.20, "Só": 0.02},
+    "eleszto": {"Víz": 0.65, "Élesztő": 0, "Só": 0.02},
+    "technologia": "Kelesztés: 4–5 óra bulk + 1,5–2 óra végső (rövid kelesztés).; Sütés: 250°C 20 perc fedővel, majd 220°C 20–25 perc.; Előkészítés: hajtogatás bulk alatt, formázás kosárban."
   },
   {
     "id": "rozsos",
-    "name": "Rozsos kenyér",
-    "flour": {"Liszt BL80": 0.5,"Rozs": 0.5},
-    "kovasz": {"Víz": 0.7, "Kovász": 0.25, "Só": 0.02 },
-    "eleszto": {"Víz": 0.7, "Élesztő": 0.02, "Só": 0.02 },
-    "technologia": "Kelesztés: Bulk: 3-4 óra + hajtogatás, Végső: 1-1.5 óra / hűtő 8-tól "
+    "name": "Rozsos kenyér (50% rozs, 50% búza)",
+    "flour": {"Rozs": 0.5, "BL80": 0.5},
+    "kovasz": {"Víz": 0.70, "Kovász": 0.25, "Só": 0.02},
+    "eleszto": {"Víz": 0.70, "Élesztő": 0, "Só": 0.02},
+    "technologia": "Kelesztés: 3–4 óra bulk + 1–1,5 óra végső (rövid).; Sütés: 240°C 15 perc, majd 210°C 25–30 perc.; Előkészítés: minimális dagasztás, inkább hajtogatás."
+  },
+  {
+    "id": "teljeskiorlesu",
+    "name": "Teljes kiőrlésű kenyér",
+    "flour": {"TK búza": 1},
+    "kovasz": {"Víz": 0.70, "Kovász": 0.25, "Só": 0.02},
+    "eleszto": {"Víz": 0.70, "Élesztő": 0, "Só": 0.02},
+    "technologia": "Kelesztés: 3–4 óra bulk + 1–1,5 óra végső, hűtve 8–12 óra ajánlott (hosszú).; Sütés: 240°C 15 perc, majd 210°C 30 perc.; Előkészítés: rövid dagasztás, hajtogatás."
+  },
+  {
+    "id": "magvas",
+    "name": "Magvas kenyér",
+    "flour": {"BL80": 0.8, "Mag": 0.2},
+    "kovasz": {"Víz": 0.70, "Kovász": 0.20, "Só": 0.02},
+    "eleszto": {"Víz": 0.70, "Élesztő": 0, "Só": 0.02},
+    "technologia": "Kelesztés: 4–5 óra bulk + 1,5–2 óra végső, hűtve 8–12 óra ajánlott (hosszú).; Sütés: 250°C 15 perc, majd 220°C 25 perc. Előkészítés: dagasztás után magok hajtogatással beforgatva.; Megjegyzés: magokat előáztatni (1:1 vízben)."
+  },
+  {
+    "id": "ciabatta",
+    "name": "Ciabatta",
+    "flour": {"BL80": 1},
+    "kovasz": {"Víz": 0.78, "Kovász": 0.20, "Só": 0.02, "Olívaolaj": 0.03},
+    "eleszto": {"Víz": 0.78, "Élesztő": 0.01, "Só": 0.02, "Olívaolaj": 0.03},
+    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső (rövid).; Sütés: 250°C 15 perc, majd 220°C 15 perc. Előkészítés: minimális dagasztás, többszöri hajtogatás.;"
+  },
+  {
+    "id": "baguette",
+    "name": "Baguette",
+    "flour": {"BL80": 1},
+    "kovasz": {"Víz": 0.70, "Kovász": 0.20, "Só": 0.02},
+    "eleszto": {"Víz": 0.70, "Élesztő": 0.01, "Só": 0.02},
+    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső, hideg retardálás 12–16 óra ajánlott.; Sütés: 250°C 20–25 perc gőzzel.; Előkészítés: hosszú, óvatos formázás."
   },
   {
     "id": "kalacs",
-    "name": "Kalács",
-    "flour": {"Liszt BL80": 1},
-    "kovasz": { "Tej": 0.4, "Kovász": 0.25, "Cukor": 50, "Vaj": 20, "Tojás": 1 },
-    "eleszto": { "Tej": 0.45, "Élesztő": 7, "Cukor": 50, "Vaj": 20, "Tojás": 1 },
-    "technologia": "180°C-on 30-35 perc tojással lekenve sütés előtt"
+    "name": "Kalács (édes kelt tészta)",
+    "flour": {"BL55": 1},
+    "kovasz": {"Tej": 0.55, "Kovász": 0.20, "Cukor": 0.15, "Vaj": 0.20, "Tojás": 0.20, "Só": 0.015},
+    "eleszto": {"Tej": 0.55, "Élesztő": 0.03, "Cukor": 0.15, "Vaj": 0.20, "Tojás": 0.20, "Só": 0.015},
+    "technologia": "Kelesztés: 2–3 óra bulk + 1–1,5 óra végső (rövid).; Sütés: 180°C 25–30 perc.; Előkészítés: hosszabb dagasztás (vaj beépítése)."
+  },
+  {
+    "id": "brios",
+    "name": "Briós",
+    "flour": {"BL55": 1},
+    "kovasz": {"Víz": 0.50, "Kovász": 0.20, "Cukor": 0.15, "Vaj": 0.25, "Tojás": 0.25, "Só": 0.015},
+    "eleszto": {"Víz": 0.50, "Élesztő": 0.025, "Cukor": 0.15, "Vaj": 0.25, "Tojás": 0.25, "Só": 0.015},
+    "technologia": "Kelesztés: 2–3 óra bulk + 1–1,5 óra végső (rövid).; Sütés: 180°C 20–25 perc.; Előkészítés: gépi dagasztás, vaj fokozatosan adagolva."
+  },
+  {
+    "id": "focaccia",
+    "name": "Focaccia",
+    "flour": {"BL80": 1},
+    "kovasz": {"Víz": 0.78, "Kovász": 0.20, "Só": 0.02, "Olívaolaj": 0.05},
+    "eleszto": {"Víz": 0.78, "Élesztő": 0.01, "Só": 0.02, "Olívaolaj": 0.05},
+    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső (rövid).; Sütés: 230°C 25 perc.; Előkészítés: minimális dagasztás, olajozott tepsiben ujjnyomkodás."
+  },
+  {
+    "id": "kifli",
+    "name": "Kifli / Zsemle",
+    "flour": {"BL80": 1},
+    "kovasz": {"Víz": 0.55, "Kovász": 0.20, "Só": 0.02, "Olaj": 0.06, "Cukor": 0.02},
+    "eleszto": {"Víz": 0.55, "Élesztő": 0.02, "Só": 0.02, "Olaj": 0.06, "Cukor": 0.02},
+    "technologia": "Kelesztés: 1–1.5 óra (rövid).; Sütés: 200–210°C 15–20 perc.; Előkészítés: gépi dagasztás, formázás."
+  },
+  {
+    "id": "pizza",
+    "name": "Pizzatészta",
+    "flour": {"Pizza liszt": 1},
+    "kovasz": {"Víz": 0.65, "Kovász": 0.20, "Só": 0.02, "Olívaolaj": 0.03},
+    "eleszto": {"Víz": 0.65, "Élesztő": 0.005, "Só": 0.02, "Olívaolaj": 0.03},
+    "technologia": "Kelesztés: 24–48 óra (hosszú, hideg).; Sütés: 250°C 6–10 perc.; Előkészítés: gyenge dagasztás + pihentetés."
   }
 ]
-
 
 
 
