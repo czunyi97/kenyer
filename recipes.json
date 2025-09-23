@@ -5,7 +5,7 @@
     "flour": {"BL80": 1},
     "kovasz": {"Víz": 0.65, "Kovász": 0.20, "Só": 0.02},
     "eleszto": {"Víz": 0.65, "Élesztő": 0, "Só": 0.02},
-    "technologia": "Kelesztés: 4–5 óra bulk + 1,5–2 óra végső (rövid kelesztés).; Sütés: 250°C 20 perc fedővel, majd 220°C 20–25 perc.; Előkészítés: hajtogatás bulk alatt, formázás kosárban."
+    "technologia": "Kelesztés: 4–5 óra bulk + 1,5–2 óra végső (rövid kelesztés), hűtve 8–12 óra ajánlott (hosszú).; Sütés: 250°C 20 perc fedővel, majd 220°C 20–25 perc.; Előkészítés: hajtogatás bulk alatt, formázás kosárban."
   },
   {
     "id": "rozsos",
@@ -13,7 +13,7 @@
     "flour": {"Rozs": 0.5, "BL80": 0.5},
     "kovasz": {"Víz": 0.70, "Kovász": 0.25, "Só": 0.02},
     "eleszto": {"Víz": 0.70, "Élesztő": 0, "Só": 0.02},
-    "technologia": "Kelesztés: 3–4 óra bulk + 1–1,5 óra végső (rövid).; Sütés: 240°C 15 perc, majd 210°C 25–30 perc.; Előkészítés: minimális dagasztás, inkább hajtogatás."
+    "technologia": "Kelesztés: 3–4 óra bulk + 1–1,5 óra végső (rövid), hűtve 8–12 óra ajánlott (hosszú).; Sütés: 240°C 15 perc, majd 210°C 25–30 perc.; Előkészítés: minimális dagasztás, inkább hajtogatás."
   },
   {
     "id": "teljeskiorlesu",
@@ -35,9 +35,9 @@
     "id": "ciabatta",
     "name": "Ciabatta",
     "flour": {"BL80": 1},
-    "kovasz": {"Víz": 0.78, "Kovász": 0.20, "Só": 0.02, "Olívaolaj": 0.03},
+    "kovasz": {"Víz": 0.78, "Kovász": 0.30, "Só": 0.02, "Olívaolaj": 0.03},
     "eleszto": {"Víz": 0.78, "Élesztő": 0.01, "Só": 0.02, "Olívaolaj": 0.03},
-    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső (rövid).; Sütés: 250°C 15 perc, majd 220°C 15 perc. Előkészítés: minimális dagasztás, többszöri hajtogatás.;"
+    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső (rövid).; Sütés: 250°C 15 perc, majd 220°C 15 perc.; Előkészítés: minimális dagasztás, többszöri hajtogatás."
   },
   {
     "id": "baguette",
@@ -67,7 +67,7 @@
     "id": "focaccia",
     "name": "Focaccia",
     "flour": {"BL80": 1},
-    "kovasz": {"Víz": 0.78, "Kovász": 0.20, "Só": 0.02, "Olívaolaj": 0.05},
+    "kovasz": {"Víz": 0.78, "Kovász": 0.30, "Só": 0.02, "Olívaolaj": 0.05},
     "eleszto": {"Víz": 0.78, "Élesztő": 0.01, "Só": 0.02, "Olívaolaj": 0.05},
     "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső (rövid).; Sütés: 230°C 25 perc.; Előkészítés: minimális dagasztás, olajozott tepsiben ujjnyomkodás."
   },
@@ -83,11 +83,12 @@
     "id": "pizza",
     "name": "Pizzatészta",
     "flour": {"Pizza liszt": 1},
-    "kovasz": {"Víz": 0.65, "Kovász": 0.20, "Só": 0.02, "Olívaolaj": 0.03},
+    "kovasz": {"Víz": 0.65, "Kovász": 0.25, "Só": 0.02, "Olívaolaj": 0.03},
     "eleszto": {"Víz": 0.65, "Élesztő": 0.005, "Só": 0.02, "Olívaolaj": 0.03},
     "technologia": "Kelesztés: 24–48 óra (hosszú, hideg).; Sütés: 250°C 6–10 perc.; Előkészítés: gyenge dagasztás + pihentetés."
   }
 ]
+
 
 
 
