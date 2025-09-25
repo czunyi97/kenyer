@@ -3,9 +3,9 @@
     "id": "feher",
     "name": "Fehér kenyér (parasztkenyér)",
     "flour": {"BL80": 1},
-    "kovasz": {"Víz": 0.65, "Kovász": 0.20, "Só": 0.02},
+    "kovasz": {"Víz": 0.65, "Kovász": 0.25, "Só": 0.02},
     "eleszto": {"Víz": 0.65, "Élesztő": 0, "Só": 0.02},
-    "technologia": "Kelesztés: 4–5 óra bulk + 1,5–2 óra végső (rövid kelesztés), hűtve 8–12 óra ajánlott (hosszú).; Sütés: 250°C 20 perc fedővel, majd 220°C 20–25 perc.; Előkészítés: hajtogatás bulk alatt, formázás kosárban."
+    "technologia": "Kelesztés: 4–5 óra bulk + 1,5–2 óra végső (rövid kelesztés), hűtve 8–12 óra ajánlott (hosszú).; Sütés: 250°C 20 perc fedővel, majd 220°C 20–25 perc.; Előkészítés: elődagasztás után sót belerakni, hajtogatás bulk alatt, formázás kosárban."
   },
   {
     "id": "rozsos",
@@ -13,7 +13,7 @@
     "flour": {"Rozs": 0.5, "BL80": 0.5},
     "kovasz": {"Víz": 0.70, "Kovász": 0.25, "Só": 0.02},
     "eleszto": {"Víz": 0.70, "Élesztő": 0, "Só": 0.02},
-    "technologia": "Kelesztés: 3–4 óra bulk + 1–1,5 óra végső (rövid), hűtve 8–12 óra ajánlott (hosszú).; Sütés: 240°C 15 perc, majd 210°C 25–30 perc.; Előkészítés: minimális dagasztás, inkább hajtogatás."
+    "technologia": "Kelesztés: 3–4 óra bulk + 1–1,5 óra végső (rövid), hűtve 8–12 óra ajánlott (hosszú).; Sütés: 240°C 15 perc, majd 210°C 25–30 perc.; Előkészítés: elődagasztás után sót belerakni, minimális dagasztás, inkább hajtogatás."
   },
   {
     "id": "teljeskiorlesu",
@@ -21,7 +21,7 @@
     "flour": {"TK búza": 1},
     "kovasz": {"Víz": 0.70, "Kovász": 0.25, "Só": 0.02},
     "eleszto": {"Víz": 0.70, "Élesztő": 0, "Só": 0.02},
-    "technologia": "Kelesztés: 3–4 óra bulk + 1–1,5 óra végső, hűtve 8–12 óra ajánlott (hosszú).; Sütés: 240°C 15 perc, majd 210°C 30 perc.; Előkészítés: rövid dagasztás, hajtogatás."
+    "technologia": "Kelesztés: 3–4 óra bulk + 1–1,5 óra végső, hűtve 8–12 óra ajánlott (hosszú).; Sütés: 240°C 15 perc, majd 210°C 30 perc.; Előkészítés: elődagasztás után sót belerakni, rövid dagasztás, hajtogatás."
   },
   {
     "id": "magvas",
@@ -35,17 +35,17 @@
     "id": "ciabatta",
     "name": "Ciabatta",
     "flour": {"BL80": 1},
-    "kovasz": {"Víz": 0.78, "Kovász": 0.30, "Só": 0.02, "Olívaolaj": 0.03},
+    "kovasz": {"Víz": 0.78, "Kovász": 0.30, "Só": 0.03, "Olívaolaj": 0.03},
     "eleszto": {"Víz": 0.78, "Élesztő": 0.01, "Só": 0.02, "Olívaolaj": 0.03},
-    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső (rövid).; Sütés: 250°C 15 perc, majd 220°C 15 perc.; Előkészítés: minimális dagasztás, többszöri hajtogatás."
+    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső (rövid).; Sütés: 250°C 15 perc, majd 220°C 15 perc.; Előkészítés: elődagasztás után sót belerakni, minimális dagasztás, többszöri hajtogatás olajos kézzel."
   },
   {
     "id": "baguette",
     "name": "Baguette",
     "flour": {"BL80": 1},
-    "kovasz": {"Víz": 0.70, "Kovász": 0.20, "Só": 0.02},
+    "kovasz": {"Víz": 0.70, "Kovász": 0.22, "Só": 0.02},
     "eleszto": {"Víz": 0.70, "Élesztő": 0.01, "Só": 0.02},
-    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső, hideg retardálás 12–16 óra ajánlott.; Sütés: 250°C 20–25 perc gőzzel.; Előkészítés: hosszú, óvatos formázás."
+    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső, hideg retardálás 12–16 óra ajánlott.; Sütés: 250°C 20–25 perc gőzzel.; Előkészítés:elődagasztás után sót belerakni, hosszú, óvatos formázás."
   },
   {
     "id": "kalacs",
@@ -67,9 +67,9 @@
     "id": "focaccia",
     "name": "Focaccia",
     "flour": {"BL80": 1},
-    "kovasz": {"Víz": 0.78, "Kovász": 0.30, "Só": 0.02, "Olívaolaj": 0.05},
+    "kovasz": {"Víz": 0.78, "Kovász": 0.30, "Só": 0.03, "Olívaolaj": 0.05},
     "eleszto": {"Víz": 0.78, "Élesztő": 0.01, "Só": 0.02, "Olívaolaj": 0.05},
-    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső (rövid).; Sütés: 230°C 25 perc.; Előkészítés: minimális dagasztás, olajozott tepsiben ujjnyomkodás."
+    "technologia": "Kelesztés: 3–4 óra bulk + 1 óra végső (rövid).; Sütés: 230°C 25 perc.; Előkészítés:elődagasztás után sót belerakni, minimális dagasztás, olajozott tepsiben ujjnyomkodás."
   },
   {
     "id": "kifli",
@@ -88,6 +88,7 @@
     "technologia": "Kelesztés: 24–48 óra (hosszú, hideg).; Sütés: 250°C 6–10 perc.; Előkészítés: gyenge dagasztás + pihentetés."
   }
 ]
+
 
 
 
