@@ -6,35 +6,123 @@
   <title>Kenyér Kalkulátor</title>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    body { font-family: Arial, sans-serif; background:#fceabb; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0;}
-    .calculator { background:#fff; padding:20px; border-radius:15px; width:95%; max-width:480px; text-align:center;}
-    label { display:block; text-align:left; margin-top:10px; font-weight:bold;}
-    select, input { width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc;}
-    button { width:48%; padding:12px; margin:1%; font-weight:bold; border:none; border-radius:10px; color:#fff; cursor:pointer;}
-    .calculate-btn{background:#27ae60;} .calculate-btn:hover{background:#2ecc71;}
-    .reset-btn{background:#e74c3c;} .reset-btn:hover{background:#ff6666;}
-    .result { background:#fdf3e7; padding:15px; border-radius:10px; margin-top:15px; text-align:left;}
-    .ingredient { margin:5px 0;}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #fceabb, #f8b500);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .calculator {
+      background: #fff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      width: 95%;
+      max-width: 480px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    h1 {
+      color: #5a3e2b;
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      color: #5a3e2b;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 48%;
+      padding: 14px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 5px 1%;
+      font-weight: bold;
+      color: #fff;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .calculate-btn { background-color: #27ae60; }
+    .calculate-btn:hover { background-color: #2ecc71; transform: translateY(-2px); }
+
+    .reset-btn { background-color: #e74c3c; }
+    .reset-btn:hover { background-color: #ff6666; transform: translateY(-2px); }
+
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #fdf3e7;
+      border-radius: 15px;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .result h2, .result h3, .result h4 {
+      color: #5a3e2b;
+      margin: 10px 0;
+    }
+
+    .ingredient {
+      font-size: 1.1em;
+      margin: 5px 0;
+    }
+
+    .ingredient i {
+      margin-right: 8px;
+      color: #f39c12;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.7em; }
+      button { font-size: 16px; padding: 12px; }
+      select, input { font-size: 15px; padding: 12px; }
+    }
   </style>
 </head>
 <body>
   <div class="calculator">
     <h1>🥖 Kenyér Kalkulátor</h1>
+
     <label for="type">Kenyér típusa:</label>
     <select id="type"></select>
-    
+
     <label for="mode">Kovász / Élesztő:</label>
     <select id="mode">
       <option value="kovasz">Kovászos</option>
       <option value="eleszto">Élesztős</option>
     </select>
 
-    <label for="flour">Liszt mennyisége (g):</label>
-    <input type="number" id="flour" value="400">
+    <label for="flour">Teljes liszt mennyisége (g):</label>
+    <input type="number" id="flour" value="500">
 
     <div style="display:flex; justify-content: space-between;">
-      <button class="calculate-btn" onclick="calculate()">Számolás</button>
-      <button class="reset-btn" onclick="resetCalculator()">Reset</button>
+      <button class="calculate-btn" onclick="calculate()"><i class="fas fa-calculator"></i> Számolás</button>
+      <button class="reset-btn" onclick="resetCalculator()"><i class="fas fa-undo"></i> Reset</button>
     </div>
 
     <div class="result" id="result"></div>
