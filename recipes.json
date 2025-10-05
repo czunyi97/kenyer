@@ -91,8 +91,8 @@
     "id": "GMkenyer",
     "name": "GM Kenyér",
     "flour": {"It's Miklos'": 1},
-    "kovasz": {"Víz": 100, "Kovász": 0.25, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.057, "Olívaolaj": 0.06},
-    "eleszto": {"Víz": 100, "Élesztő": 0.02, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.057, "Olívaolaj": 0.06},
+    "kovasz": {"Víz": 0.999, "Kovász": 0.25, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.057, "Olívaolaj": 0.06},
+    "eleszto": {"Víz": 0.999, "Élesztő": 0.02, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.057, "Olívaolaj": 0.06},
     "technologia": "Kelesztés: 45-60 perc (Formába); Sütés: 180°C 45-50 perc.; Előkészítés: Útifű maghéjat és az élesztőt a vízben elkeverni, majd hozzáadni a többi hozzávalot és készre dagasztani."
   },
 {
