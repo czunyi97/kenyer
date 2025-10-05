@@ -158,6 +158,9 @@
 
         output += `<p class="ingredient">${icon} <b>${key}:</b> ${Math.round(gramm)} g</p>`;
       }
+      const totalWeight = Math.round(totalWeight * 1);
+      output += `<h3>⚖️ Nyers teszta súly:</h3>`;
+      output += `<p class="ingredient"><i class='fas fa-weight'></i> <b>${bakedWeight} g</b></p>`;
 
       const bakedWeight = Math.round(totalWeight * 0.88);
       output += `<h3>⚖️ Várható kisült súly:</h3>`;
