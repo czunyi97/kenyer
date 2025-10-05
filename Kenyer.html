@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kenyér Kalkulátor</title>
-  <!-- Ikonokhoz FontAwesome CDN -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
@@ -118,8 +117,8 @@
       <option value="eleszto">Élesztős</option>
     </select>
 
-    <label for="flour">Liszt mennyisége (g):</label>
-    <input type="number" id="flour" value="100">
+    <label for="flour">Teljes liszt mennyisége (g):</label>
+    <input type="number" id="flour" value="500">
 
     <div style="display:flex; justify-content: space-between;">
       <button class="calculate-btn" onclick="calculate()"><i class="fas fa-calculator"></i> Számolás</button>
@@ -147,73 +146,69 @@
         typeSelect.appendChild(option);
       });
     }
-function calculate() {
-  const type = document.getElementById("type").value;
-  const mode = document.getElementById("mode").value;
-  const flour = parseInt(document.getElementById("flour").value);
 
-  const recipe = recipes.find(r => r.id === type);
-  const data = recipe[mode];
+    function calculate() {
+      const type = document.getElementById("type").value;
+      const mode = document.getElementById("mode").value;
+      const flour = parseInt(document.getElementById("flour").value);
 
-  let output = `<h2>📋 Recept adatok</h2>`;
-  output += `<p class="ingredient"><i class="fas fa-bread-slice"></i> <b>Liszt:</b> ${flour} g</p>`;
+      const recipe = recipes.find(r => r.id === type);
+      const data = recipe[mode];
 
-  let totalWeight = flour;
+      let output = `<h2>📋 Recept adatok</h2>`;
+      output += `<p class="ingredient"><i class="fas fa-bread-slice"></i> <b>Teljes liszt mennyiség:</b> ${flour} g</p>`;
 
-  for (const [key, value] of Object.entries(data)) {
-    if (key.toLowerCase().includes("liszt")) continue;
-
-    let gramm;
-    if (typeof value === "number") {
-      // ✅ Intelligens értelmezés:
-      // - ha 0 < érték <= 1 → arány (0.7 = 70%)
-      // - ha 1 < érték <= 50 → arány százalékban (pl. 30 = 30%)
-      // - ha érték > 50 → fix gramm (pl. 100 = 100g)
-      if (value > 0 && value <= 1) {
-        gramm = flour * value;
-      } else if (value > 1 && value <= 50) {
-        gramm = (flour * value) / 100;
-      } else {
-        gramm = value; // fix gramm
+      // Lisztkeverék megjelenítése
+      if (recipe.liszt) {
+        output += `<h3>🌾 Liszt összetétel:</h3>`;
+        for (const [type, ratio] of Object.entries(recipe.liszt)) {
+          const amount = Math.round(flour * ratio);
+          output += `<p class="ingredient"><i class="fas fa-seedling"></i> ${type}: <b>${amount} g</b></p>`;
+        }
       }
-    } else {
-      gramm = 0;
+
+      let totalWeight = flour;
+
+      for (const [key, value] of Object.entries(data)) {
+        let gramm;
+        if (typeof value === "number") {
+          if (value > 0 && value <= 1) gramm = flour * value;        // arány
+          else if (value > 1 && value <= 50) gramm = (flour * value) / 100; // százalék
+          else gramm = value; // fix gramm
+        } else {
+          gramm = 0;
+        }
+
+        totalWeight += gramm;
+
+        let icon = "";
+        switch (key.toLowerCase()) {
+          case "víz": icon = "<i class='fas fa-tint'></i>"; break;
+          case "kovász": icon = "<i class='fas fa-seedling'></i>"; break;
+          case "élesztő": icon = "<i class='fas fa-leaf'></i>"; break;
+          case "só": icon = "<i class='fas fa-snowflake'></i>"; break;
+          case "cukor": icon = "<i class='fas fa-candy-cane'></i>"; break;
+          case "vaj": icon = "<i class='fas fa-butter'></i>"; break;
+          case "tojás": icon = "<i class='fas fa-egg'></i>"; break;
+          case "tej": icon = "<i class='fas fa-glass-whiskey'></i>"; break;
+          case "olaj": icon = "<i class='fas fa-oil-can'></i>"; break;
+          default: icon = "<i class='fas fa-utensils'></i>";
+        }
+
+        output += `<p class="ingredient">${icon} <b>${key}:</b> ${Math.round(gramm)} g</p>`;
+      }
+
+      const bakedWeight = Math.round(totalWeight * 0.88);
+      output += `<h3>⚖️ Várható kisült súly:</h3>`;
+      output += `<p class="ingredient"><i class='fas fa-weight'></i> <b>${bakedWeight} g</b></p>`;
+
+      if (recipe.technologia) {
+        output += `<h4>⚙️ Technológiai adatok</h4>`;
+        output += `<p>${recipe.technologia}</p>`;
+      }
+
+      document.getElementById("result").innerHTML = output;
     }
-
-    totalWeight += gramm;
-
-    // Ikon hozzárendelés
-    let icon = "";
-    switch (key.toLowerCase()) {
-      case "víz": icon = "<i class='fas fa-tint'></i>"; break;
-      case "kovász": icon = "<i class='fas fa-seedling'></i>"; break;
-      case "élesztő": icon = "<i class='fas fa-leaf'></i>"; break;
-      case "só": icon = "<i class='fas fa-snowflake'></i>"; break;
-      case "cukor": icon = "<i class='fas fa-candy-cane'></i>"; break;
-      case "vaj": icon = "<i class='fas fa-butter'></i>"; break;
-      case "tojás": icon = "<i class='fas fa-egg'></i>"; break;
-      case "tej": icon = "<i class='fas fa-glass-whiskey'></i>"; break;
-      case "olaj": icon = "<i class='fas fa-oil-can'></i>"; break;
-      default: icon = "<i class='fas fa-utensils'></i>";
-    }
-
-    output += `<p class="ingredient">${icon} <b>${key}:</b> ${Math.round(gramm)} g</p>`;
-  }
-
-  // 🔹 Kisült súly kalkuláció
-  const bakedWeight = Math.round(totalWeight * 0.88);
-  output += `<h3>⚖️ Várható kisült súly:</h3>`;
-  output += `<p class="ingredient"><i class='fas fa-weight'></i> <b>${bakedWeight} g</b></p>`;
-
-  // 🔹 Technológiai adatok kiírása
-  if (recipe.technologia) {
-    output += `<h4>⚙️ Technológiai adatok</h4>`;
-    output += `<p>${recipe.technologia}</p>`;
-  }
-
-  document.getElementById("result").innerHTML = output;
-}
-    
 
     function resetCalculator() {
       document.getElementById("flour").value = "";
@@ -224,7 +219,3 @@ function calculate() {
   </script>
 </body>
 </html>
-
-
-
-
