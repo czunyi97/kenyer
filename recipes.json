@@ -151,7 +151,7 @@
     },
     "eleszto": {
       "lisztek": { "It's Miklos'": 1 },
-      "hozzavalok": { "Víz": 1, "Élesztő": 0.025, "Só": 0.022, "Cukor": 0.01, "Útifű maghéj": 0.057, "Olívaolaj": 0.06 }
+      "hozzavalok": { "Víz": 1, "Élesztő": 0.02, "Só": 0.022, "Cukor": 0.01, "Útifű maghéj": 0.057, "Olívaolaj": 0.06 }
     },
     "technologia": "Kelesztés: 45–60 perc (Formába); Sütés: 180°C 45–50 perc.; Előkészítés: Útifű maghéjat és az élesztőt a vízben elkeverni, majd hozzáadni a többi hozzávalót és készre dagasztani."
   },
@@ -164,7 +164,7 @@
     },
     "eleszto": {
       "lisztek": { "It's Miklos' Bread": 0.5, "It's Miklos' Universal": 0.5 },
-      "hozzavalok": { "Víz": 1, "Élesztő": 0.025, "Só": 0.022, "Cukor": 0.01, "Útifű maghéj": 0.057, "Olívaolaj": 0.06 }
+      "hozzavalok": { "Víz": 1, "Élesztő": 0.02, "Só": 0.022, "Cukor": 0.01, "Útifű maghéj": 0.057, "Olívaolaj": 0.06 }
     },
     "technologia": "Kelesztés: 45–60 perc (Formába); Sütés: 180°C 45–50 perc.; Előkészítés: Útifű maghéjat és az élesztőt a vízben elkeverni, majd hozzáadni a többi hozzávalót és készre dagasztani."
   }
