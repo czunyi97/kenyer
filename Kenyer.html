@@ -147,57 +147,73 @@
         typeSelect.appendChild(option);
       });
     }
+function calculate() {
+  const type = document.getElementById("type").value;
+  const mode = document.getElementById("mode").value;
+  const flour = parseInt(document.getElementById("flour").value);
 
-    function calculate() {
-      const type = document.getElementById("type").value;
-      const mode = document.getElementById("mode").value;
-      const flour = parseInt(document.getElementById("flour").value);
+  const recipe = recipes.find(r => r.id === type);
+  const data = recipe[mode];
 
-      const recipe = recipes.find(r => r.id === type);
-      const data = recipe[mode];
+  let output = `<h2>📋 Recept adatok</h2>`;
+  output += `<p class="ingredient"><i class="fas fa-bread-slice"></i> <b>Liszt:</b> ${flour} g</p>`;
 
-      let output = `<h2>📋 Recept adatok</h2>`;
-      output += `<p class="ingredient"><i class="fas fa-bread-slice"></i> <b>Liszt:</b> ${flour} g</p>`;
+  let totalWeight = flour;
 
-      let totalWeight = flour;
+  for (const [key, value] of Object.entries(data)) {
+    if (key.toLowerCase().includes("liszt")) continue;
 
-      for (const [key, value] of Object.entries(data)) {
-        let displayValue;
-        if (typeof value === "number") {
-          displayValue = value < 1 ? Math.round(flour * value) + " g" : Math.round(value) + " g";
-          totalWeight += parseInt(displayValue);
-        } else {
-          displayValue = value;
-        }
-
-        // Ikonok hozzáadása alapanyagokhoz
-        let icon = "";
-        switch (key.toLowerCase()) {
-          case "víz": icon = "<i class='fas fa-tint'></i>"; break;
-          case "kovász": icon = "<i class='fas fa-seedling'></i>"; break;
-          case "élesztő": icon = "<i class='fas fa-leaf'></i>"; break;
-          case "só": icon = "<i class='fas fa-snowflake'></i>"; break;
-          case "cukor": icon = "<i class='fas fa-candy-cane'></i>"; break;
-          case "vaj": icon = "<i class='fas fa-butter'></i>"; break;
-          case "tojás": icon = "<i class='fas fa-egg'></i>"; break;
-          case "tej": icon = "<i class='fas fa-glass-whiskey'></i>"; break;
-          default: icon = "<i class='fas fa-utensils'></i>";
-        }
-
-        output += `<p class="ingredient">${icon} <b>${key}:</b> ${displayValue}</p>`;
+    let gramm;
+    if (typeof value === "number") {
+      // ✅ Intelligens értelmezés:
+      // - ha 0 < érték <= 1 → arány (0.7 = 70%)
+      // - ha 1 < érték <= 50 → arány százalékban (pl. 30 = 30%)
+      // - ha érték > 50 → fix gramm (pl. 100 = 100g)
+      if (value > 0 && value <= 1) {
+        gramm = flour * value;
+      } else if (value > 1 && value <= 50) {
+        gramm = (flour * value) / 100;
+      } else {
+        gramm = value; // fix gramm
       }
-
-      const bakedWeight = Math.round(totalWeight * 0.88);
-      output += `<h3>⚖️ Várható kisült súly:</h3>`;
-      output += `<p class="ingredient"><i class='fas fa-weight'></i> <b>${bakedWeight} g</b></p>`;
-
-      if (recipe.technologia) {
-        output += `<h4>⚙️ Technológiai adatok</h4>`;
-        output += `<p>${recipe.technologia}</p>`;
-      }
-
-      document.getElementById("result").innerHTML = output;
+    } else {
+      gramm = 0;
     }
+
+    totalWeight += gramm;
+
+    // Ikon hozzárendelés
+    let icon = "";
+    switch (key.toLowerCase()) {
+      case "víz": icon = "<i class='fas fa-tint'></i>"; break;
+      case "kovász": icon = "<i class='fas fa-seedling'></i>"; break;
+      case "élesztő": icon = "<i class='fas fa-leaf'></i>"; break;
+      case "só": icon = "<i class='fas fa-snowflake'></i>"; break;
+      case "cukor": icon = "<i class='fas fa-candy-cane'></i>"; break;
+      case "vaj": icon = "<i class='fas fa-butter'></i>"; break;
+      case "tojás": icon = "<i class='fas fa-egg'></i>"; break;
+      case "tej": icon = "<i class='fas fa-glass-whiskey'></i>"; break;
+      case "olaj": icon = "<i class='fas fa-oil-can'></i>"; break;
+      default: icon = "<i class='fas fa-utensils'></i>";
+    }
+
+    output += `<p class="ingredient">${icon} <b>${key}:</b> ${Math.round(gramm)} g</p>`;
+  }
+
+  // 🔹 Kisült súly kalkuláció
+  const bakedWeight = Math.round(totalWeight * 0.88);
+  output += `<h3>⚖️ Várható kisült súly:</h3>`;
+  output += `<p class="ingredient"><i class='fas fa-weight'></i> <b>${bakedWeight} g</b></p>`;
+
+  // 🔹 Technológiai adatok kiírása
+  if (recipe.technologia) {
+    output += `<h4>⚙️ Technológiai adatok</h4>`;
+    output += `<p>${recipe.technologia}</p>`;
+  }
+
+  document.getElementById("result").innerHTML = output;
+}
+    
 
     function resetCalculator() {
       document.getElementById("flour").value = "";
