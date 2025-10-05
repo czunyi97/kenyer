@@ -91,16 +91,16 @@
     "id": "GMkenyer",
     "name": "GM Kenyér",
     "flour": {"It's Miklos'": 1},
-    "kovasz": {"Víz": 1.0, "Kovász": 0.25, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.0057, "Olívaolaj": 0.06},
-    "eleszto": {"Víz": 1.0, "Élesztő": 0.0025, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.005, "Olívaolaj": 0.06},
+    "kovasz": {"Víz": 1.0, "Kovász": 0.25, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.057, "Olívaolaj": 0.06},
+    "eleszto": {"Víz": 1.0, "Élesztő": 0.025, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.057, "Olívaolaj": 0.06},
     "technologia": "Kelesztés: 45-60 perc (Formába); Sütés: 180°C 45-50 perc.; Előkészítés: Útifű maghéjat és az élesztőt a vízben elkeverni, majd hozzáadni a többi hozzávalot és készre dagasztani."
   },
 {
     "id": "GMzsemle",
     "name": "GM Zsemle",
     "flour": {"It's Miklos' Bread": 0.5, "It's Miklos' Universal": 0.5 },
-    "kovasz": {"Víz": 1, "Kovász": 0.25, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.0057, "Olívaolaj": 0.06},
-    "eleszto": {"Víz": 1, "Élesztő": 0.002, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.0057, "Olívaolaj": 0.06},
+    "kovasz": {"Víz": 1, "Kovász": 0.25, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.057, "Olívaolaj": 0.06},
+    "eleszto": {"Víz": 1, "Élesztő": 0.025, "Só": 0.022,"Cukor": 0.01,"Útifű maghéj": 0.057, "Olívaolaj": 0.06},
     "technologia": "Kelesztés: 45-60 perc (Formába); Sütés: 180°C 45-50 perc.; Előkészítés: Útifű maghéjat és az élesztőt a vízben elkeverni, majd hozzáadni a többi hozzávalot és készre dagasztani."
   }
 ]
